@@ -1,1 +1,1 @@
-.content{width:100%}.content .app_wrapper{width:750px}.toDo-list-item .interaction-buttons .btn{width:35px}.toDo-list-item .interaction-buttons .btn .fa{font-size:1.1rem}.filterPanel .btn-group .btn{width:75px}
+.content{width:100%}.content .app_wrapper{width:750px}.interaction-buttons .btn{width:35px}.interaction-buttons .btn .fa{font-size:1.1rem}.toDo-list-item.done .toDo-list-item-label{text-decoration:line-through}.toDo-list-item.important .toDo-list-item-label{font-weight:bold;color:steelblue}.filterPanel .btn-group .btn{width:75px}

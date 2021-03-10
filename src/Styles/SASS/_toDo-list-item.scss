@@ -1,11 +1,22 @@
-.toDo-list-item {
-    .interaction-buttons{
-        .btn{
-            width: 35px;
+.interaction-buttons{
+    .btn{
+        width: 35px;
 
-            .fa{
-                font-size: 1.1rem;
-            }
+        .fa{
+            font-size: 1.1rem;
         }
+    }
+}
+
+.toDo-list-item.done {
+    .toDo-list-item-label{
+        text-decoration: line-through;
+    }
+}
+
+.toDo-list-item.important {
+    .toDo-list-item-label{
+        font-weight: bold;
+        color: steelblue;
     }
 }
