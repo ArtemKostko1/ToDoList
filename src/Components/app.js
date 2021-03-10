@@ -1,6 +1,7 @@
 import HeaderComponent from './header';
-import ToDoListComponent from './toDo-list';
 import FilterPanelComponent from './filterPanel';
+import InputFormComponent from './input-form';
+import ToDoListComponent from './toDo-list';
 import '../Styles/CSS/mainStyles.css';
 
 const AppComponent = () => {
@@ -11,13 +12,14 @@ const AppComponent = () => {
     ];
 
   return (
-      <div className="app_wrapper p-4">
-        <HeaderComponent />
-        <div className="main">
-          <FilterPanelComponent toDo={2} done={1} />
-          <ToDoListComponent listItems = { toDoListItemData }/>
-        </div>
+    <div className="app_wrapper p-4">
+      <HeaderComponent />
+      <div className="main">
+        <FilterPanelComponent toDo={2} done={1} />
+        <InputFormComponent />
+        <ToDoListComponent listItems = { toDoListItemData }/>
       </div>
+    </div>
   );
 }
 
