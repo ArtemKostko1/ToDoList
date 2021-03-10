@@ -1,9 +1,9 @@
-import HeaderComponent from './Components/header';
-import ToDoListComponent from './Components/toDo-list';
-import FilterPanelComponent from './Components/filterPanel';
-import './Styles/CSS/mainStyles.css';
+import HeaderComponent from './header';
+import ToDoListComponent from './toDo-list';
+import FilterPanelComponent from './filterPanel';
+import '../Styles/CSS/mainStyles.css';
 
-const App = () => {
+const AppComponent = () => {
     const toDoListItemData = [
         {label: 'To meet friends', important: true, id: 1},
         {label: 'Learn React', important: false, id: 2},
@@ -21,4 +21,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default AppComponent;
