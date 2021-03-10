@@ -1,5 +1,7 @@
 import HeaderComponent from './Components/header';
 import ToDoListComponent from './Components/toDo-list';
+import FilterPanelComponent from './Components/filterPanel';
+import './Styles/CSS/mainStyles.css';
 
 const App = () => {
     const toDoListItemData = [
@@ -9,9 +11,12 @@ const App = () => {
     ];
 
   return (
-      <div className="app_wrapper container">
-        <HeaderComponent/>
-        <ToDoListComponent listItems = { toDoListItemData }/>
+      <div className="app_wrapper p-4">
+        <HeaderComponent />
+        <div className="main">
+          <FilterPanelComponent toDo={2} done={1} />
+          <ToDoListComponent listItems = { toDoListItemData }/>
+        </div>
       </div>
   );
 }

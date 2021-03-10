@@ -3,17 +3,17 @@ import ToDoListItem from './toDo-list-item';
 
 const ToDoListComponent = ({ listItems }) => {
     const items = listItems.map((item) => {
-        const { id, ... itemProps } = item;
+        const { id, ...itemProps } = item;
 
         return (
            <li key={id} className="list-group-item">
-               <ToDoListItem { ... itemProps }/>
+               <ToDoListItem { ...itemProps }/>
            </li>
         );
     });
 
     return (
-        <div className = "toDoList w-75 my-3">
+        <div className = "toDo-list my-3">
             <ul className="list-group">
                 { items }
             </ul>
