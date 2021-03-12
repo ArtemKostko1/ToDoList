@@ -6,7 +6,7 @@ export default class FilterPanelComponent extends Component {
         const { toDo, done } = this.props;
 
         return (
-            <div className="filterPanel d-flex justify-content-between my-3">
+            <div className="filter-panel d-flex justify-content-between my-3">
                 <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off"/>
                     <label className="btn btn-outline-primary" htmlFor="btnradio1">All</label>
