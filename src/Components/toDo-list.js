@@ -1,6 +1,8 @@
 import React from 'react';
 import ToDoListItem from './toDo-list-item';
 
+//___________________________________________________________________________
+
 const ToDoListComponent = ({ listItems, onDeletedToDoListItem, onToggleImportant, onToggleDone }) => {
     const items = listItems.map((item) => {
         const { id, ...itemProps } = item;
@@ -16,6 +18,8 @@ const ToDoListComponent = ({ listItems, onDeletedToDoListItem, onToggleImportant
            </li>
         );
     });
+
+    //------------------------------------------------------------------------
 
     return (
         <div className = "toDo-list my-3">

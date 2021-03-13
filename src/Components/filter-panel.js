@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
+import Tippy from '@tippy.js/react';
+import 'tippy.js/dist/tippy.css';
+
+//___________________________________________________________________________
 
 export default class FilterPanelComponent extends Component {
+    filterButtons = [
+        { name: 'all', label: 'All' },
+        { name: 'active', label: 'Active' },
+        { name: 'done', label: 'Done' }
+    ];
 
     render () {
+        const { filter, onFilterChange } = this.props;
+
+        const filterStates = this.filterButtons.map(({ name, label }) => {
+            const isActive = filter === name;
+            const className = isActive ? 'btn-primary' : 'btn-outline-secondary';
+
+            return (
+                <Tippy content={ `Show ${ name } items` }>
+                    <button 
+                        type="button" 
+                        className={`btn ${ className }`} 
+                        onClick={ () => onFilterChange(name) }
+                        key={ name }>
+                            { label }
+                    </button>
+                </Tippy>
+            );
+        });
+
         const { toDo, done } = this.props;
 
         return (
             <div className="filter-panel d-flex justify-content-between my-3">
-                <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off"/>
-                    <label className="btn btn-outline-primary" htmlFor="btnradio1">All</label>
-    
-                    <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autoComplete="off"/>
-                    <label className="btn btn-outline-primary" htmlFor="btnradio2">Active</label>
-    
-                    <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autoComplete="off"/>
-                    <label className="btn btn-outline-primary" htmlFor="btnradio3">Done</label>
+               <div className="btn-group" role="group" aria-label="Basic outlined example">
+                    { filterStates }
                 </div>
     
                 <div className="ItemStatusFilter">

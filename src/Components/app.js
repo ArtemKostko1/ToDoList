@@ -15,10 +15,44 @@ export default class AppComponent extends Component {
       this.CreateToDoItem('To meet friends'),
       this.CreateToDoItem('Learn React'),
       this.CreateToDoItem('Have a lunch')
-    ]
+    ],
+    searchItem: '',
+    filter: 'all' // all, active, done
   };
 
   //------------------------------------------------------------------------
+
+  render() {
+    const { toDoListItemData, searchItem, filter } = this.state;
+    const doneItemsCount = toDoListItemData.filter((el) => el.done).length;
+    const unDoneItemsCount = toDoListItemData.length - doneItemsCount;
+    const visibleItems = this.ItemsFilter(this.SearchFilter(toDoListItemData, searchItem), filter);
+
+    return (
+      <div className="app_wrapper p-4">
+        <HeaderComponent onSearchChange={ this.onSearchChange }/>
+  
+        <div className="main">
+          <FilterPanelComponent 
+            toDo={ unDoneItemsCount } 
+            done={ doneItemsCount } 
+            filter={ filter }
+            onFilterChange={ this.onFilterChange }/>
+
+          <ItemAddFormComponent onAddedToDoListItem = { this.AddToDoListItem }/>
+
+          <ToDoListComponent 
+            listItems = { visibleItems } 
+            onDeletedToDoListItem = { this.DeleteToDoListItem }
+            onToggleImportant = { this.onToggleImportant }
+            onToggleDone = { this.onToggleDone }
+          />
+        </div>
+      </div>
+    );
+  };
+
+   //------------------------------------------------------------------------
 
   CreateToDoItem(text) {
     return {
@@ -75,7 +109,7 @@ export default class AppComponent extends Component {
       newItem,
       ...arr.slice(index + 1)
     ];
-  }
+  };
 
   //------------------------------------------------------------------------
 
@@ -99,26 +133,39 @@ export default class AppComponent extends Component {
 
   //------------------------------------------------------------------------
 
-  render() {
-    const { toDoListItemData } = this.state;
-    const doneItemsCount = toDoListItemData.filter((el) => el.done).length;
-    const unDoneItemsCount = toDoListItemData.length - doneItemsCount;
+  SearchFilter(items, searchItem) {
+    if(searchItem.label === 0) {
+      return items;
+    }
 
-    return (
-      <div className="app_wrapper p-4">
-        <HeaderComponent />
+    return items.filter((item) => {
+      return item.label.toLowerCase().indexOf(searchItem.toLowerCase()) > -1;
+    });
+  };
+
+  //------------------------------------------------------------------------
+
+  onSearchChange = (searchItem) => this.setState({ searchItem });
+
+  //------------------------------------------------------------------------
   
-        <div className="main">
-          <FilterPanelComponent toDo={ unDoneItemsCount } done={ doneItemsCount } />
-          <ItemAddFormComponent onAddedToDoListItem = { this.AddToDoListItem }/>
-          <ToDoListComponent 
-            listItems = { toDoListItemData } 
-            onDeletedToDoListItem = { this.DeleteToDoListItem }
-            onToggleImportant = { this.onToggleImportant }
-            onToggleDone = { this.onToggleDone }
-          />
-        </div>
-      </div>
-    );
+  onFilterChange = (filter) => this.setState({ filter });
+
+  //------------------------------------------------------------------------
+
+  ItemsFilter (items, filter) {
+    switch(filter) {
+      case 'all':
+        return items;
+
+      case 'active':
+        return items.filter((item) => !item.done);
+
+      case 'done':
+        return items.filter((item) => item.done);
+
+      default:
+        return items;
+    }
   };
 }
